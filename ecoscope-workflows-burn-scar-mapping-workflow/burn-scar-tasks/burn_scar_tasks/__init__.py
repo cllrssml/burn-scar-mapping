@@ -221,14 +221,16 @@ def compute_burn_scar_s2(
         Field(
             title="Analysis Scale (metres)",
             description=(
-                "Pixel resolution for dNBR computation. "
-                "Native Sentinel-2 SWIR resolution is 20 m. "
-                "Increase for large AOIs to reduce computation time."
+                "Pixel resolution for dNBR computation and burn scar vectorisation. "
+                "Default 100 m works for reserves up to ~500,000 ha. "
+                "Use 30–50 m for small AOIs (<5,000 ha) where patch detail matters. "
+                "Native Sentinel-2 SWIR resolution is 20 m — only use this for very "
+                "small AOIs (<500 ha) otherwise GEE memory limits will be exceeded."
             ),
             ge=10,
-            le=200,
+            le=500,
         ),
-    ] = 20,
+    ] = 100,
 ) -> _GDF:
     """
     Detect and map burn scars from Sentinel-2 imagery using dual-index spectral change detection.
@@ -277,6 +279,19 @@ def compute_burn_scar_s2(
     pre_end    = fire_start_date   # filterDate is [start, end) — ends just before fire
     post_start = fire_end_date     # starts on fire end date
     post_end   = (fire_end_dt + timedelta(days=post_fire_days)).strftime("%Y-%m-%d")
+
+    # Pre-flight: check pixel count at the requested scale won't exceed GEE memory limit.
+    # GEE operations (connectedPixelCount, reduceToVectors, reduceRegions) OOM above ~500k pixels.
+    aoi_utm = aoi.to_crs(aoi.estimate_utm_crs())
+    area_m2 = float(aoi_utm.geometry.union_all().area)
+    est_pixels = area_m2 / (scale ** 2)
+    if est_pixels > 500_000:
+        suggest = int((area_m2 / 250_000) ** 0.5) + 5
+        raise ValueError(
+            f"AOI ({area_m2 / 10_000:.0f} ha) at {scale} m scale would require "
+            f"~{est_pixels:,.0f} pixels — GEE memory limit is ~500,000. "
+            f"Increase 'Analysis Scale' to at least {suggest} m."
+        )
 
     # Build GEE geometry from AOI
     aoi = aoi.set_geometry(aoi.geometry.make_valid())

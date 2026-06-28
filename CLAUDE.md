@@ -90,5 +90,5 @@ DBSCAN params (suggested): spatial epsilon = 5 km, time epsilon = 3 days, min_sa
 
 ## GitHub
 
-Repo: https://github.com/cllrssml/cfw-burn-scar-mapping (private, push when ready)
+Repo: https://github.com/cllrssml/burn-scar-mapping (private, push when ready)
 Current published version: not yet published (pending first Desktop test)

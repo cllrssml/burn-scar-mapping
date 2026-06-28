@@ -1,4 +1,4 @@
-id: cfw_burn_scar_mapping
+id: burn_scar_mapping
 
 requirements:
   - name: "ecoscope-platform"

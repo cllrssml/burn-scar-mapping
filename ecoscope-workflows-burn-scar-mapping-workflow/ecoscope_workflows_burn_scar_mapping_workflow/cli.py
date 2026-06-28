@@ -12,7 +12,7 @@ from urllib.parse import urlparse
 
 import click
 
-RELEASE_NAME = "ecoscope-workflows-cfw-burn-scar-mapping-workflow"
+RELEASE_NAME = "ecoscope-workflows-burn-scar-mapping-workflow"
 
 
 @click.group()

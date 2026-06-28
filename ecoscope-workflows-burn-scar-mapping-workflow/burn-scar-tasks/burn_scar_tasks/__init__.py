@@ -362,7 +362,8 @@ def compute_burn_scar_s2(
     connected = burned_pixels.connectedPixelCount(maxSize=1000, eightConnected=True)
     patch_mask = connected.gte(min_pixels)
 
-    # Vectorise burn patches (binary mask → polygon features)
+    # Vectorise burn patches (binary mask → polygon features).
+    # bestEffort=True lets GEE coarsen scale automatically if memory limit is hit.
     burn_polys = (
         patch_mask
         .selfMask()
@@ -372,15 +373,19 @@ def compute_burn_scar_s2(
             geometryType="polygon",
             eightConnected=True,
             maxPixels=int(1e8),
+            bestEffort=True,
         )
     )
 
-    # Per-polygon mean dNBR and ΔMIRBI
+    # Per-polygon mean dNBR and ΔMIRBI.
+    # tileScale=4 divides the computation into smaller tiles to stay within the
+    # GEE per-request memory limit (prevents "User memory limit exceeded" on large AOIs).
     data_img = dnbr.rename("dNBR").addBands(delta_mirbi.rename("DELTA_MIRBI"))
     stats = data_img.reduceRegions(
         collection=burn_polys,
         reducer=ee.Reducer.mean(),
         scale=scale,
+        tileScale=4,
     )
 
     features = stats.getInfo()["features"]

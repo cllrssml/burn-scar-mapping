@@ -1,0 +1,298 @@
+id: cfw_burn_scar_mapping
+
+requirements:
+  - name: python
+    version: "3.12.*"
+  - name: "ecoscope-platform"
+    version: ">=2.11.3,<3"
+    channel: "https://repo.prefix.dev/ecoscope-workflows/"
+  - name: "burn-scar-tasks"
+    path: "/home/sam/Ecoscope_Projects/burn-scar-tasks"
+    editable: true
+
+rjsf-overrides:
+  properties:
+    aoi_name.properties.group_name.ecoscope:transform:
+      - transformer: EarthRangerEnumResolver
+        transformer_kws:
+          type: spatial_feature_group
+          depends_on: properties.er_connection.properties.data_source.properties.name
+    overlay_name.properties.group_name.ecoscope:transform:
+      - transformer: EarthRangerEnumResolver
+        transformer_kws:
+          type: spatial_feature_group
+          depends_on: properties.er_connection.properties.data_source.properties.name
+
+workflow:
+
+  # --- Metadata ---------------------------------------------------------------
+  - name: Workflow Details
+    id: workflow_details
+    task: set_workflow_details
+
+  # --- Connections ------------------------------------------------------------
+  - name: EarthRanger
+    id: er_connection
+    task: set_er_connection
+
+  - name: Earth Engine
+    id: gee_connection
+    task: set_gee_connection
+
+  # --- AOI (required — reserve boundary or specific block from ER) ------------
+  - name: AOI Name
+    id: aoi_name
+    task: set_aoi_group_name
+
+  - name: AOI Features
+    id: aoi_features
+    task: get_spatial_features_group
+    partial:
+      client: ${{ workflow.er_connection.return }}
+      spatial_features_group_name: ${{ workflow.aoi_name.return }}
+
+  # --- Optional overlay (fencelines, roads, water points, etc.) ---------------
+  - name: Overlay Layer Group Name
+    id: overlay_name
+    task: set_overlay_group_name
+
+  - name: Overlay Features
+    id: overlay_features
+    task: get_spatial_features_group
+    skipif:
+      conditions:
+        - any_dependency_is_empty_string
+    partial:
+      client: ${{ workflow.er_connection.return }}
+      spatial_features_group_name: ${{ workflow.overlay_name.return }}
+
+  # --- Base maps --------------------------------------------------------------
+  - name: Base Maps
+    id: base_maps
+    task: set_base_maps
+
+  # --- Sentinel-2 burn scar detection (GEE) -----------------------------------
+  - name: Compute Burn Scar
+    id: burn_scar_result
+    task: compute_burn_scar_s2
+    partial:
+      client: ${{ workflow.gee_connection.return }}
+      aoi: ${{ workflow.aoi_features.return }}
+
+  # --- Burn scar polygon layer ------------------------------------------------
+  - name: Burn Scar Layer
+    id: burn_scar_layer
+    task: create_burn_scar_layer
+    partial:
+      geodataframe: ${{ workflow.burn_scar_result.return }}
+
+  # --- AOI boundary outline (always shown) ------------------------------------
+  - name: AOI Boundary Layer
+    id: aoi_layer
+    task: create_styled_overlay_layer
+    partial:
+      geodataframe: ${{ workflow.aoi_features.return }}
+
+  # --- Optional user overlay --------------------------------------------------
+  - name: Overlay Layer
+    id: overlay_layer
+    task: create_styled_overlay_layer
+    skipif:
+      conditions:
+        - any_dependency_skipped
+        - any_is_empty_df
+    partial:
+      geodataframe: ${{ workflow.overlay_features.return }}
+
+  # --- Combine layers: burn scar + AOI boundary + optional overlay ------------
+  # skipif: any_is_empty_df ONLY (not any_dependency_skipped) — task handles
+  # SkipSentinel from overlay_layer internally so the map renders without overlay.
+  - name: Combined Layers
+    id: combined_layers
+    task: combine_burn_scar_layers
+    skipif:
+      conditions:
+        - any_is_empty_df
+    partial:
+      burn_scar_layer: ${{ workflow.burn_scar_layer.return }}
+      aoi_layer: ${{ workflow.aoi_layer.return }}
+      overlay_layer: ${{ workflow.overlay_layer.return }}
+
+  # --- Burn scar map ----------------------------------------------------------
+  - name: Burn Scar Map
+    id: burn_scar_map
+    task: draw_ecomap
+    skipif:
+      conditions:
+        - any_is_empty_df
+        - any_dependency_skipped
+    partial:
+      title: null
+      tile_layers: ${{ workflow.base_maps.return }}
+      geo_layers: ${{ workflow.combined_layers.return }}
+      north_arrow_style:
+        placement: top-left
+      legend_style:
+        title: Fire Severity
+        placement: bottom-right
+      static: false
+      max_zoom: 20
+
+  - name: Persist Map
+    id: burn_scar_map_url
+    task: persist_text
+    skipif:
+      conditions:
+        - any_is_empty_df
+        - any_dependency_skipped
+    partial:
+      root_path: ${{ env.ECOSCOPE_WORKFLOWS_RESULTS }}
+      filename_suffix: burn_scar
+      text: ${{ workflow.burn_scar_map.return }}
+
+  - name: Map Widget
+    id: map_widget
+    task: create_map_widget_single_view
+    skipif:
+      conditions:
+        - never
+    partial:
+      title: Burn Scar Map
+      data: ${{ workflow.burn_scar_map_url.return }}
+
+  # --- Stat: burned area (Low severity or higher) -----------------------------
+  - name: Burned Area
+    id: burned_area_ha
+    task: count_burned_area_ha
+    partial:
+      geodataframe: ${{ workflow.burn_scar_result.return }}
+
+  - name: Burned Area Formatted
+    id: burned_area_fmt
+    task: format_area_ha
+    partial:
+      area_ha: ${{ workflow.burned_area_ha.return }}
+
+  - name: Widget - Burned
+    id: widget_burned
+    task: create_text_widget_single_view
+    partial:
+      title: Burned
+      data: ${{ workflow.burned_area_fmt.return }}
+
+  # --- Stat: high severity area (Moderate-High or higher) --------------------
+  - name: High Severity Area
+    id: high_severity_ha
+    task: count_high_severity_area_ha
+    partial:
+      geodataframe: ${{ workflow.burn_scar_result.return }}
+
+  - name: High Severity Formatted
+    id: high_severity_fmt
+    task: format_area_ha
+    partial:
+      area_ha: ${{ workflow.high_severity_ha.return }}
+
+  - name: Widget - High Sev
+    id: widget_high_severity
+    task: create_text_widget_single_view
+    partial:
+      title: High Sev
+      data: ${{ workflow.high_severity_fmt.return }}
+
+  # --- Stat: burn patch count -------------------------------------------------
+  - name: Patch Count
+    id: patch_count
+    task: count_burn_patches
+    partial:
+      geodataframe: ${{ workflow.burn_scar_result.return }}
+
+  - name: Patch Count Formatted
+    id: patch_count_fmt
+    task: format_patch_count
+    partial:
+      count: ${{ workflow.patch_count.return }}
+
+  - name: Widget - Patches
+    id: widget_patches
+    task: create_text_widget_single_view
+    partial:
+      title: Patches
+      data: ${{ workflow.patch_count_fmt.return }}
+
+  # --- Stat: detection mode ---------------------------------------------------
+  - name: Detection Mode
+    id: detection_mode
+    task: get_detection_mode
+    partial:
+      geodataframe: ${{ workflow.burn_scar_result.return }}
+
+  - name: Widget - Mode
+    id: widget_mode
+    task: create_text_widget_single_view
+    partial:
+      title: Mode
+      data: ${{ workflow.detection_mode.return }}
+
+  # --- Stat: pre/post scene counts (observability) ----------------------------
+  - name: Pre Scenes
+    id: pre_scenes
+    task: count_pre_images
+    partial:
+      geodataframe: ${{ workflow.burn_scar_result.return }}
+
+  - name: Pre Scenes Formatted
+    id: pre_scenes_fmt
+    task: format_image_count
+    partial:
+      count: ${{ workflow.pre_scenes.return }}
+
+  - name: Widget - Pre Imgs
+    id: widget_pre_scenes
+    task: create_text_widget_single_view
+    partial:
+      title: Pre Imgs
+      data: ${{ workflow.pre_scenes_fmt.return }}
+
+  - name: Post Scenes
+    id: post_scenes
+    task: count_post_images
+    partial:
+      geodataframe: ${{ workflow.burn_scar_result.return }}
+
+  - name: Post Scenes Formatted
+    id: post_scenes_fmt
+    task: format_image_count
+    partial:
+      count: ${{ workflow.post_scenes.return }}
+
+  - name: Widget - Post Imgs
+    id: widget_post_scenes
+    task: create_text_widget_single_view
+    partial:
+      title: Post Imgs
+      data: ${{ workflow.post_scenes_fmt.return }}
+
+  # --- Dashboard --------------------------------------------------------------
+  # widget_id order: 0=Burned, 1=High Sev, 2=Patches, 3=Mode,
+  #                  4=Pre Imgs, 5=Post Imgs, 6=Map
+  - name: Dashboard
+    id: dashboard
+    task: gather_dashboard
+    partial:
+      details: ${{ workflow.workflow_details.return }}
+      widgets:
+        - ${{ workflow.widget_burned.return }}
+        - ${{ workflow.widget_high_severity.return }}
+        - ${{ workflow.widget_patches.return }}
+        - ${{ workflow.widget_mode.return }}
+        - ${{ workflow.widget_pre_scenes.return }}
+        - ${{ workflow.widget_post_scenes.return }}
+        - ${{ workflow.map_widget.return }}
+      time_range: ~
+
+task-instance-defaults:
+  skipif:
+    conditions:
+      - any_is_empty_df
+      - any_dependency_skipped

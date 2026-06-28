@@ -1,0 +1,45 @@
+{
+  "workflow_details": {
+    "name": "Burn Scar Mapping",
+    "description": "Sentinel-2 burn scar detection and mapping from an EarthRanger AOI"
+  },
+  "er_connection": {
+    "data_source": {
+      "name": "<your-data-source>"
+    }
+  },
+  "gee_connection": {
+    "data_source": {
+      "name": "<your-gee-connection>"
+    }
+  },
+  "aoi_name": {
+    "group_name": "<your-aoi-group>"
+  },
+  "overlay_name": {
+    "group_name": ""
+  },
+  "base_maps": {
+    "base_maps": [
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+        "opacity": 1
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+        "opacity": 0.5
+      }
+    ]
+  },
+  "burn_scar_result": {
+    "fire_start_date": "2024-08-01",
+    "fire_end_date": "2024-08-10",
+    "pre_fire_days": 90,
+    "post_fire_days": 30,
+    "dnbr_threshold": 0.2,
+    "scale": 20
+  },
+  "burn_scar_layer": {
+    "opacity": 0.85
+  }
+}

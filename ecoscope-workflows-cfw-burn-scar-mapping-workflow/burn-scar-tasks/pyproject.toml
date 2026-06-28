@@ -1,0 +1,15 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "burn-scar-tasks"
+version = "0.1.0"
+description = "Custom tasks for burn scar detection workflows on the Ecoscope Platform"
+dependencies = ["geopandas", "numpy", "wt-registry>=0.2,<1", "shapely"]
+
+[project.entry-points."wt_registry"]
+burn_scar_tasks = "burn_scar_tasks"
+
+[tool.hatch.build.targets.wheel]
+packages = ["burn_scar_tasks"]

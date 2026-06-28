@@ -1,11 +1,11 @@
 id: cfw_burn_scar_mapping
 
 requirements:
-  - name: python
-    version: "3.12.*"
   - name: "ecoscope-platform"
-    version: ">=2.11.3,<3"
+    version: ">=2.15.0,<2.16.0"
     channel: "https://repo.prefix.dev/ecoscope-workflows/"
+  - name: pydeck
+    version: "0.9.2"
   - name: "burn-scar-tasks"
     path: "/home/sam/Ecoscope_Projects/burn-scar-tasks"
     editable: true

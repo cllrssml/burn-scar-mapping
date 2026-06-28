@@ -1,0 +1,422 @@
+{
+  "properties": {
+    "workflow_details": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "Workflow Name",
+          "type": "string"
+        },
+        "description": {
+          "default": "",
+          "title": "Workflow Description",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "description": "Add information that will help to differentiate this workflow from another.",
+      "title": "Workflow Details"
+    },
+    "er_connection": {
+      "additionalProperties": false,
+      "properties": {
+        "data_source": {
+          "$ref": "#/$defs/EarthRangerConnection",
+          "title": "",
+          "description": "Select one of your configured data sources."
+        }
+      },
+      "required": [
+        "data_source"
+      ],
+      "type": "object",
+      "title": "EarthRanger"
+    },
+    "gee_connection": {
+      "additionalProperties": false,
+      "properties": {
+        "data_source": {
+          "$ref": "#/$defs/GoogleEarthEngineConnection",
+          "title": "",
+          "description": "Select one of your configured data sources."
+        }
+      },
+      "required": [
+        "data_source"
+      ],
+      "type": "object",
+      "title": "Earth Engine"
+    },
+    "aoi_name": {
+      "additionalProperties": false,
+      "properties": {
+        "group_name": {
+          "title": "AOI Group Name",
+          "type": "string",
+          "description": "Name of an EarthRanger spatial features group that defines the area to scan for burn scars (e.g. 'Reserve Boundary', 'North Block'). Find it in ER under Admin \u2192 Map Layers \u2192 Feature Groups. The burn detection will be run within this boundary.",
+          "ecoscope:transform": [
+            {
+              "transformer": "EarthRangerEnumResolver",
+              "transformer_kws": {
+                "type": "spatial_feature_group",
+                "depends_on": "properties.er_connection.properties.data_source.properties.name"
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "group_name"
+      ],
+      "type": "object",
+      "title": "AOI Name"
+    },
+    "overlay_name": {
+      "additionalProperties": false,
+      "properties": {
+        "group_name": {
+          "default": "",
+          "title": "Overlay Layer Group Name",
+          "type": "string",
+          "description": "Optional: name of an EarthRanger spatial features group to display as an extra layer on the map (e.g. 'Roads', 'Fencelines', 'Water Sources'). Leave blank to add no overlay.",
+          "ecoscope:transform": [
+            {
+              "transformer": "EarthRangerEnumResolver",
+              "transformer_kws": {
+                "type": "spatial_feature_group",
+                "depends_on": "properties.er_connection.properties.data_source.properties.name"
+              }
+            }
+          ]
+        }
+      },
+      "type": "object",
+      "required": [],
+      "title": "Overlay Layer Group Name"
+    },
+    "base_maps": {
+      "additionalProperties": false,
+      "properties": {
+        "base_maps": {
+          "default": [
+            {
+              "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+              "opacity": 1,
+              "max_zoom": 20,
+              "min_zoom": 0
+            },
+            {
+              "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+              "opacity": 0.5,
+              "max_zoom": 20,
+              "min_zoom": 0
+            }
+          ],
+          "items": {
+            "title": "Base Layer",
+            "anyOf": [
+              {
+                "description": "A tiled raster layer loaded on-demand from a URL template (e.g., base maps).",
+                "properties": {
+                  "url": {
+                    "default": "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                    "title": "Preset Layer URL",
+                    "type": "string",
+                    "const": "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                    "enum": [
+                      "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    ]
+                  },
+                  "opacity": {
+                    "default": 1,
+                    "description": "Set layer transparency from 1 (fully visible) to 0 (hidden).",
+                    "ecoscope:advanced": true,
+                    "maximum": 1.0,
+                    "minimum": 0.0,
+                    "title": "Layer Opacity",
+                    "type": "number"
+                  }
+                },
+                "title": "Open Street Map",
+                "type": "object"
+              },
+              {
+                "description": "A tiled raster layer loaded on-demand from a URL template (e.g., base maps).",
+                "properties": {
+                  "url": {
+                    "default": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+                    "title": "Preset Layer URL",
+                    "type": "string",
+                    "const": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+                    "enum": [
+                      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"
+                    ]
+                  },
+                  "opacity": {
+                    "default": 1,
+                    "description": "Set layer transparency from 1 (fully visible) to 0 (hidden).",
+                    "ecoscope:advanced": true,
+                    "maximum": 1.0,
+                    "minimum": 0.0,
+                    "title": "Layer Opacity",
+                    "type": "number"
+                  }
+                },
+                "title": "Roadmap",
+                "type": "object"
+              },
+              {
+                "description": "A tiled raster layer loaded on-demand from a URL template (e.g., base maps).",
+                "properties": {
+                  "url": {
+                    "default": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                    "title": "Preset Layer URL",
+                    "type": "string",
+                    "const": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                    "enum": [
+                      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                    ]
+                  },
+                  "opacity": {
+                    "default": 1,
+                    "description": "Set layer transparency from 1 (fully visible) to 0 (hidden).",
+                    "ecoscope:advanced": true,
+                    "maximum": 1.0,
+                    "minimum": 0.0,
+                    "title": "Layer Opacity",
+                    "type": "number"
+                  }
+                },
+                "title": "Satellite",
+                "type": "object"
+              },
+              {
+                "description": "A tiled raster layer loaded on-demand from a URL template (e.g., base maps).",
+                "properties": {
+                  "url": {
+                    "default": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+                    "title": "Preset Layer URL",
+                    "type": "string",
+                    "const": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+                    "enum": [
+                      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}"
+                    ]
+                  },
+                  "opacity": {
+                    "default": 1,
+                    "description": "Set layer transparency from 1 (fully visible) to 0 (hidden).",
+                    "ecoscope:advanced": true,
+                    "maximum": 1.0,
+                    "minimum": 0.0,
+                    "title": "Layer Opacity",
+                    "type": "number"
+                  }
+                },
+                "title": "Terrain",
+                "type": "object"
+              },
+              {
+                "description": "A tiled raster layer loaded on-demand from a URL template (e.g., base maps).",
+                "properties": {
+                  "url": {
+                    "default": "https://server.arcgisonline.com/arcgis/rest/services/Elevation/World_Hillshade/MapServer/tile/{z}/{y}/{x}",
+                    "title": "Preset Layer URL",
+                    "type": "string",
+                    "const": "https://server.arcgisonline.com/arcgis/rest/services/Elevation/World_Hillshade/MapServer/tile/{z}/{y}/{x}",
+                    "enum": [
+                      "https://server.arcgisonline.com/arcgis/rest/services/Elevation/World_Hillshade/MapServer/tile/{z}/{y}/{x}"
+                    ]
+                  },
+                  "opacity": {
+                    "default": 1,
+                    "description": "Set layer transparency from 1 (fully visible) to 0 (hidden).",
+                    "ecoscope:advanced": true,
+                    "maximum": 1.0,
+                    "minimum": 0.0,
+                    "title": "Layer Opacity",
+                    "type": "number"
+                  }
+                },
+                "title": "USGS Hillshade",
+                "type": "object"
+              },
+              {
+                "description": "A tiled raster layer loaded on-demand from a URL template (e.g., base maps).",
+                "properties": {
+                  "url": {
+                    "default": "https://example.tiles.com/{z}/{x}/{y}.png",
+                    "description": "The URL of a publicly accessible tiled raster service.",
+                    "pattern": "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}([-a-zA-Z0-9()@:%_\\+.~#?&//=\\{\\}]*)",
+                    "title": "Custom Layer URL",
+                    "type": "string"
+                  },
+                  "opacity": {
+                    "default": 1,
+                    "description": "Set layer transparency from 1 (fully visible) to 0 (hidden).",
+                    "ecoscope:advanced": true,
+                    "maximum": 1.0,
+                    "minimum": 0.0,
+                    "title": "Custom Layer Opacity",
+                    "type": "number"
+                  },
+                  "max_zoom": {
+                    "default": 20,
+                    "description": "Set the maximum zoom level to fetch tiles for.",
+                    "title": "Custom Layer Max Zoom",
+                    "type": "integer"
+                  },
+                  "min_zoom": {
+                    "default": 0,
+                    "description": "Set the minimum zoom level to fetch tiles for.",
+                    "title": "Custom Layer Min Zoom",
+                    "type": "integer"
+                  }
+                },
+                "title": "Custom Layer (Advanced)",
+                "type": "object"
+              }
+            ]
+          },
+          "title": " ",
+          "type": "array",
+          "description": "Select tile layers to use as base layers in map outputs. The first layer in the list will be the bottommost layer displayed.",
+          "ecoscope:advanced": true
+        }
+      },
+      "type": "object",
+      "required": [],
+      "title": "Base Maps"
+    },
+    "burn_scar_result": {
+      "additionalProperties": false,
+      "properties": {
+        "fire_start_date": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "title": "Fire Start Date",
+          "type": "string",
+          "description": "Start date of the fire event or scan window (YYYY-MM-DD). The pre-fire composite uses imagery before this date."
+        },
+        "fire_end_date": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "title": "Fire End Date",
+          "type": "string",
+          "description": "End date of the fire event or scan window (YYYY-MM-DD). Set the same as Fire Start Date for a single-day event. The post-fire composite uses imagery after this date."
+        },
+        "pre_fire_days": {
+          "default": 90,
+          "maximum": 365,
+          "minimum": 30,
+          "title": "Pre-Fire Window (days)",
+          "type": "integer",
+          "description": "Days before Fire Start Date for the pre-fire Sentinel-2 mean composite. 90\u2013120 days captures stable vegetation state before fire season onset."
+        },
+        "post_fire_days": {
+          "default": 30,
+          "maximum": 90,
+          "minimum": 7,
+          "title": "Post-Fire Window (days)",
+          "type": "integer",
+          "description": "Days after Fire End Date for the post-fire Sentinel-2 mean composite. 14\u201330 days recommended \u2014 C4 grasses in the Lowveld can recover within 2\u20134 weeks of rainfall. Use up to 60 days for dry-season fires where regrowth is slow."
+        },
+        "dnbr_threshold": {
+          "default": 0.2,
+          "maximum": 0.5,
+          "minimum": 0.05,
+          "title": "dNBR Detection Threshold",
+          "type": "number",
+          "description": "Minimum dNBR to classify a pixel as burned. Default 0.2 (200 on \u00d71000 scale). 0.1 detects more area but increases false positives from vegetation drying. 0.27\u20130.3 gives high-confidence detections but may miss low-severity burns."
+        },
+        "scale": {
+          "default": 20,
+          "maximum": 200,
+          "minimum": 10,
+          "title": "Analysis Scale (metres)",
+          "type": "integer",
+          "description": "Pixel resolution for dNBR computation. Native Sentinel-2 SWIR resolution is 20 m. Increase for large AOIs to reduce computation time."
+        }
+      },
+      "required": [
+        "fire_start_date",
+        "fire_end_date"
+      ],
+      "type": "object",
+      "title": "Compute Burn Scar"
+    },
+    "burn_scar_layer": {
+      "additionalProperties": false,
+      "properties": {
+        "opacity": {
+          "default": 0.85,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Layer Opacity",
+          "type": "number",
+          "description": "Transparency of the burn scar layer (0 = transparent, 1 = fully opaque)."
+        }
+      },
+      "required": [],
+      "type": "object",
+      "title": "Burn Scar Layer"
+    }
+  },
+  "$defs": {
+    "EarthRangerConnection": {
+      "properties": {
+        "name": {
+          "title": "Data Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "EarthRangerConnection",
+      "type": "object"
+    },
+    "GoogleEarthEngineConnection": {
+      "properties": {
+        "name": {
+          "title": "Data Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "GoogleEarthEngineConnection",
+      "type": "object"
+    }
+  },
+  "uiSchema": {
+    "workflow_details": {
+      "ui:order": [
+        "name",
+        "description"
+      ]
+    },
+    "burn_scar_result": {
+      "ui:order": [
+        "fire_start_date",
+        "fire_end_date",
+        "pre_fire_days",
+        "post_fire_days",
+        "dnbr_threshold",
+        "scale"
+      ]
+    },
+    "ui:order": [
+      "workflow_details",
+      "er_connection",
+      "gee_connection",
+      "aoi_name",
+      "overlay_name",
+      "base_maps",
+      "burn_scar_result",
+      "burn_scar_layer"
+    ]
+  },
+  "additionalProperties": false
+}

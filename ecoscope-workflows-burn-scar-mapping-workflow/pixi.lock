@@ -79,7 +79,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/httptools-0.8.0-py312h4c3975b_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/icu-78.3-h33c6efd_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/igraph-1.0.1-hfe3e89f_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/imagecodecs-2026.6.6-py312he3a1cdd_3.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/imagecodecs-2026.6.26-py312he3a1cdd_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/json-c-0.18-h6688a6e_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/jxrlib-1.1-hd590300_3.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/keyutils-1.6.3-hb9d3cd8_0.conda
@@ -522,7 +522,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/httptools-0.8.0-py312hcd1a082_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/icu-78.3-hcab7f73_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/igraph-1.0.1-h1827c4d_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/imagecodecs-2026.6.6-py312ha5741de_3.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/imagecodecs-2026.6.26-py312ha5741de_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/json-c-0.18-hd4cd8d4_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/jxrlib-1.1-h31becfc_3.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/keyutils-1.6.3-h86ecc28_0.conda
@@ -1173,7 +1173,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-64/httptools-0.8.0-py312h933eb07_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/icu-78.3-h25d91c4_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/igraph-1.0.1-h049a311_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-64/imagecodecs-2026.6.6-py312h8f42733_3.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-64/imagecodecs-2026.6.26-py312h8f42733_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/json-c-0.18-hc62ec3d_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/jxrlib-1.1-h10d778d_3.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/kiwisolver-1.5.0-py312hb1dc2e7_0.conda
@@ -1605,7 +1605,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/httptools-0.8.0-py312h2bbb03f_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/icu-78.3-hef89b57_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/igraph-1.0.1-h1ee73af_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/imagecodecs-2026.6.6-py312he3e6aaf_3.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/imagecodecs-2026.6.26-py312he3e6aaf_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/json-c-0.18-he4178ee_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/jxrlib-1.1-h93a5062_3.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/kiwisolver-1.5.0-py312h3093aea_0.conda
@@ -2032,7 +2032,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/win-64/httptools-0.8.0-py312he06e257_0.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/icu-78.3-h637d24d_0.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/igraph-1.0.1-h9eeb67d_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/win-64/imagecodecs-2026.6.6-py312h006af62_3.conda
+      - conda: https://conda.anaconda.org/conda-forge/win-64/imagecodecs-2026.6.26-py312h006af62_0.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/jxrlib-1.1-hcfcfb64_3.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/kiwisolver-1.5.0-py312h78d62e6_0.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/krb5-1.22.2-h719d79b_1.conda
@@ -2708,7 +2708,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/greenlet-3.5.3-py313h5d5ffb9_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/httptools-0.8.0-py313h07c4f96_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/icu-78.3-h33c6efd_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/imagecodecs-2026.6.6-py313ha402da8_3.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/imagecodecs-2026.6.26-py313ha402da8_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/jxrlib-1.1-hd590300_3.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/keyutils-1.6.3-hb9d3cd8_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/krb5-1.22.2-hbde042b_1.conda
@@ -2931,7 +2931,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/greenlet-3.5.3-py313h59403f9_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/httptools-0.8.0-py313h6194ac5_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/icu-78.3-hcab7f73_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/imagecodecs-2026.6.6-py313h7daf9ad_3.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/imagecodecs-2026.6.26-py313h7daf9ad_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/jxrlib-1.1-h31becfc_3.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/keyutils-1.6.3-h86ecc28_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/krb5-1.22.2-h2fb54aa_1.conda
@@ -3227,7 +3227,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-64/greenlet-3.5.3-py313h5fe49f0_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/httptools-0.8.0-py313hf59fe81_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/icu-78.3-h25d91c4_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-64/imagecodecs-2026.6.6-py313h02185af_3.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-64/imagecodecs-2026.6.26-py313h02185af_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/jxrlib-1.1-h10d778d_3.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/krb5-1.22.2-h3ddfcb2_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/lcms2-2.19.1-h5ea7634_1.conda
@@ -3443,7 +3443,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/glog-0.7.1-heb240a5_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/greenlet-3.5.3-py313h1188861_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/httptools-0.8.0-py313h0997733_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/imagecodecs-2026.6.6-py313h9d12897_3.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/imagecodecs-2026.6.26-py313h9d12897_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/jxrlib-1.1-h93a5062_3.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/krb5-1.22.2-hfd3d5f3_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/lcms2-2.19.1-hdfa7624_1.conda
@@ -3658,7 +3658,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/win-64/giflib-5.2.2-h64bf75a_0.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/greenlet-3.5.3-py313h927ade5_0.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/httptools-0.8.0-py313h5ea7bf4_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/win-64/imagecodecs-2026.6.6-py313hf6ffc8e_3.conda
+      - conda: https://conda.anaconda.org/conda-forge/win-64/imagecodecs-2026.6.26-py313hf6ffc8e_0.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/jxrlib-1.1-hcfcfb64_3.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/krb5-1.22.2-h719d79b_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/lcms2-2.19.1-hf2c6c5f_1.conda
@@ -4920,15 +4920,15 @@ packages:
     - igraph >=1.0.1,<1.1.0a0
   size: 1665781
   timestamp: 1766862001031
-- conda: https://conda.anaconda.org/conda-forge/linux-64/imagecodecs-2026.6.6-py312he3a1cdd_3.conda
-  sha256: ceae6dba80901a17b15af13bebb1cf2de99dc462950f4dc97620a6c293d446c4
-  md5: 0379f12b78a048a2a6d6b3ec35548828
+- conda: https://conda.anaconda.org/conda-forge/linux-64/imagecodecs-2026.6.26-py312he3a1cdd_0.conda
+  sha256: b046bb1671752c1018fb94ac774a9fd94fbb39c6b454c40d0621d04657f0f86e
+  md5: b0879dc5a612c6a6f15830a4c2543373
   depends:
   - __glibc >=2.17,<3.0.a0
   - blosc >=1.21.6,<2.0a0
   - brunsli >=0.1,<1.0a0
   - bzip2 >=1.0.8,<2.0a0
-  - c-blosc2 >=3.1.4,<3.2.0a0
+  - c-blosc2 >=3.1.5,<3.2.0a0
   - charls >=2.4.4,<2.5.0a0
   - giflib >=5.2.2,<5.3.0a0
   - jxrlib >=1.1,<1.2.0a0
@@ -4951,7 +4951,7 @@ packages:
   - libzlib >=1.3.2,<2.0a0
   - libzopfli >=1.0.3,<1.1.0a0
   - lz4-c >=1.10.0,<1.11.0a0
-  - numpy >=1.23,<3
+  - numpy >=1.25,<3
   - openjpeg >=2.5.4,<3.0a0
   - openjph >=0.30.1,<0.31.0a0
   - python >=3.12,<3.13.0a0
@@ -4963,19 +4963,19 @@ packages:
   license: BSD-3-Clause
   license_family: BSD
   purls:
-  - pkg:pypi/imagecodecs?source=compressed-mapping
+  - pkg:pypi/imagecodecs?source=hash-mapping
   run_exports: {}
-  size: 2314617
-  timestamp: 1782111783641
-- conda: https://conda.anaconda.org/conda-forge/linux-64/imagecodecs-2026.6.6-py313ha402da8_3.conda
-  sha256: bb5b19bb79e9be63873eaa4aeb3254fbfcbae5b28dad6d9c8db6e2df54146400
-  md5: 195edf9224048bd7fd7d31bf6375234e
+  size: 2349412
+  timestamp: 1782686079000
+- conda: https://conda.anaconda.org/conda-forge/linux-64/imagecodecs-2026.6.26-py313ha402da8_0.conda
+  sha256: 1adb54c4070c56c9617cea54e47291c207f78322486c15769271dbdb795df43b
+  md5: b5714553e1a8ad0fc2b974312f203fcb
   depends:
   - __glibc >=2.17,<3.0.a0
   - blosc >=1.21.6,<2.0a0
   - brunsli >=0.1,<1.0a0
   - bzip2 >=1.0.8,<2.0a0
-  - c-blosc2 >=3.1.4,<3.2.0a0
+  - c-blosc2 >=3.1.5,<3.2.0a0
   - charls >=2.4.4,<2.5.0a0
   - giflib >=5.2.2,<5.3.0a0
   - jxrlib >=1.1,<1.2.0a0
@@ -4998,7 +4998,7 @@ packages:
   - libzlib >=1.3.2,<2.0a0
   - libzopfli >=1.0.3,<1.1.0a0
   - lz4-c >=1.10.0,<1.11.0a0
-  - numpy >=1.23,<3
+  - numpy >=1.25,<3
   - openjpeg >=2.5.4,<3.0a0
   - openjph >=0.30.1,<0.31.0a0
   - python >=3.13,<3.14.0a0
@@ -5010,8 +5010,8 @@ packages:
   license: BSD-3-Clause
   license_family: BSD
   run_exports: {}
-  size: 2323524
-  timestamp: 1782111763349
+  size: 2356995
+  timestamp: 1782686071434
 - conda: https://conda.anaconda.org/conda-forge/linux-64/json-c-0.18-h6688a6e_0.conda
   sha256: 09e706cb388d3ea977fabcee8e28384bdaad8ce1fc49340df5f868a2bd95a7da
   md5: 38f5dbc9ac808e31c00650f7be1db93f
@@ -9444,14 +9444,14 @@ packages:
     - igraph >=1.0.1,<1.1.0a0
   size: 1605159
   timestamp: 1766861937901
-- conda: https://conda.anaconda.org/conda-forge/linux-aarch64/imagecodecs-2026.6.6-py312ha5741de_3.conda
-  sha256: 72e9074622dc385b76fe6b3a591edacf2826e4c7714f5abdd8b0026bffff97e8
-  md5: 94563f5485cf4427b2e4aad53e535c26
+- conda: https://conda.anaconda.org/conda-forge/linux-aarch64/imagecodecs-2026.6.26-py312ha5741de_0.conda
+  sha256: 78772cc316a39f67f84464d856de266b10a4acf8041fd9a463c522fdc99d763b
+  md5: 620c14b63444bb1cba7176b8ceecfd16
   depends:
   - blosc >=1.21.6,<2.0a0
   - brunsli >=0.1,<1.0a0
   - bzip2 >=1.0.8,<2.0a0
-  - c-blosc2 >=3.1.4,<3.2.0a0
+  - c-blosc2 >=3.1.5,<3.2.0a0
   - charls >=2.4.4,<2.5.0a0
   - giflib >=5.2.2,<5.3.0a0
   - jxrlib >=1.1,<1.2.0a0
@@ -9474,7 +9474,7 @@ packages:
   - libzlib >=1.3.2,<2.0a0
   - libzopfli >=1.0.3,<1.1.0a0
   - lz4-c >=1.10.0,<1.11.0a0
-  - numpy >=1.23,<3
+  - numpy >=1.25,<3
   - openjpeg >=2.5.4,<3.0a0
   - openjph >=0.30.1,<0.31.0a0
   - python >=3.12,<3.13.0a0
@@ -9489,16 +9489,16 @@ packages:
   purls:
   - pkg:pypi/imagecodecs?source=hash-mapping
   run_exports: {}
-  size: 2194350
-  timestamp: 1782111840779
-- conda: https://conda.anaconda.org/conda-forge/linux-aarch64/imagecodecs-2026.6.6-py313h7daf9ad_3.conda
-  sha256: 336bde1208b48185a2abf81d57b1623df78c05e3d958f83a0c1740fd5ac20586
-  md5: 5142aff653e61fae6b030df3931e3dbb
+  size: 2218324
+  timestamp: 1782686143456
+- conda: https://conda.anaconda.org/conda-forge/linux-aarch64/imagecodecs-2026.6.26-py313h7daf9ad_0.conda
+  sha256: f470fe1733025d1f54b83cd2aa14df3c344ae0dc88284b3dd7f4cccb633bdb2b
+  md5: 0163ee883622fac2c1d1cc4a0e54ea45
   depends:
   - blosc >=1.21.6,<2.0a0
   - brunsli >=0.1,<1.0a0
   - bzip2 >=1.0.8,<2.0a0
-  - c-blosc2 >=3.1.4,<3.2.0a0
+  - c-blosc2 >=3.1.5,<3.2.0a0
   - charls >=2.4.4,<2.5.0a0
   - giflib >=5.2.2,<5.3.0a0
   - jxrlib >=1.1,<1.2.0a0
@@ -9521,7 +9521,7 @@ packages:
   - libzlib >=1.3.2,<2.0a0
   - libzopfli >=1.0.3,<1.1.0a0
   - lz4-c >=1.10.0,<1.11.0a0
-  - numpy >=1.23,<3
+  - numpy >=1.25,<3
   - openjpeg >=2.5.4,<3.0a0
   - openjph >=0.30.1,<0.31.0a0
   - python >=3.13,<3.14.0a0
@@ -9534,8 +9534,8 @@ packages:
   license: BSD-3-Clause
   license_family: BSD
   run_exports: {}
-  size: 2197843
-  timestamp: 1782111823450
+  size: 2221423
+  timestamp: 1782686129059
 - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/json-c-0.18-hd4cd8d4_0.conda
   sha256: 54794a9aaeabb4d9010574f92e13c20f2fe9a8b5ec7cacf033d50cc339c86e32
   md5: 9c23430bcadd724434a88657abbeef46
@@ -17302,15 +17302,15 @@ packages:
     - igraph >=1.0.1,<1.1.0a0
   size: 1831252
   timestamp: 1766862288936
-- conda: https://conda.anaconda.org/conda-forge/osx-64/imagecodecs-2026.6.6-py312h8f42733_3.conda
-  sha256: 244f140bb9aa9ce9d8524d1fd2a827e3a35a2579249a83c25ed485b850b532dc
-  md5: b97d95c13d83d6edfc9295c80110a87e
+- conda: https://conda.anaconda.org/conda-forge/osx-64/imagecodecs-2026.6.26-py312h8f42733_0.conda
+  sha256: b032d12551a6a3870c070cc4d6762755f091de304285c864ff648bbc81aaa2c8
+  md5: ee030412c10d1c68303cd1d8062d2a1a
   depends:
   - __osx >=11.0
   - blosc >=1.21.6,<2.0a0
   - brunsli >=0.1,<1.0a0
   - bzip2 >=1.0.8,<2.0a0
-  - c-blosc2 >=3.1.4,<3.2.0a0
+  - c-blosc2 >=3.1.5,<3.2.0a0
   - charls >=2.4.4,<2.5.0a0
   - giflib >=5.2.2,<5.3.0a0
   - jxrlib >=1.1,<1.2.0a0
@@ -17332,7 +17332,7 @@ packages:
   - libzlib >=1.3.2,<2.0a0
   - libzopfli >=1.0.3,<1.1.0a0
   - lz4-c >=1.10.0,<1.11.0a0
-  - numpy >=1.23,<3
+  - numpy >=1.25,<3
   - openjpeg >=2.5.4,<3.0a0
   - openjph >=0.30.1,<0.31.0a0
   - python >=3.12,<3.13.0a0
@@ -17346,17 +17346,17 @@ packages:
   purls:
   - pkg:pypi/imagecodecs?source=hash-mapping
   run_exports: {}
-  size: 1866944
-  timestamp: 1782112464998
-- conda: https://conda.anaconda.org/conda-forge/osx-64/imagecodecs-2026.6.6-py313h02185af_3.conda
-  sha256: 1e5483b736c4fe694dcec60e42cc48853de570ae70a039028ad9a1633ac0c5fc
-  md5: 9728c193039a2071d6da7f203bcdcf6c
+  size: 1883195
+  timestamp: 1782686451737
+- conda: https://conda.anaconda.org/conda-forge/osx-64/imagecodecs-2026.6.26-py313h02185af_0.conda
+  sha256: f774066a037796e8db30abb7b983395517b832814a422f42339fa5a9635a94e5
+  md5: 5aa0950ff3d39dbb32ce67488510780e
   depends:
   - __osx >=11.0
   - blosc >=1.21.6,<2.0a0
   - brunsli >=0.1,<1.0a0
   - bzip2 >=1.0.8,<2.0a0
-  - c-blosc2 >=3.1.4,<3.2.0a0
+  - c-blosc2 >=3.1.5,<3.2.0a0
   - charls >=2.4.4,<2.5.0a0
   - giflib >=5.2.2,<5.3.0a0
   - jxrlib >=1.1,<1.2.0a0
@@ -17378,7 +17378,7 @@ packages:
   - libzlib >=1.3.2,<2.0a0
   - libzopfli >=1.0.3,<1.1.0a0
   - lz4-c >=1.10.0,<1.11.0a0
-  - numpy >=1.23,<3
+  - numpy >=1.25,<3
   - openjpeg >=2.5.4,<3.0a0
   - openjph >=0.30.1,<0.31.0a0
   - python >=3.13,<3.14.0a0
@@ -17390,8 +17390,8 @@ packages:
   license: BSD-3-Clause
   license_family: BSD
   run_exports: {}
-  size: 1861694
-  timestamp: 1782112929223
+  size: 1885072
+  timestamp: 1782686424790
 - conda: https://conda.anaconda.org/conda-forge/osx-64/json-c-0.18-hc62ec3d_0.conda
   sha256: b58f8002318d6b880a98e1b0aa943789b3b0f49334a3bdb9c19b463a0b799cad
   md5: 2c5a3c42de607dda0cfa0edd541fd279
@@ -21509,15 +21509,15 @@ packages:
     - igraph >=1.0.1,<1.1.0a0
   size: 1572601
   timestamp: 1766862354842
-- conda: https://conda.anaconda.org/conda-forge/osx-arm64/imagecodecs-2026.6.6-py312he3e6aaf_3.conda
-  sha256: d6ee21a0292866327fc6e1e6967b416c32b659c7851c8f42f3f91875cd8ec5fa
-  md5: bb41da32a0f551079e09d05c418af1f0
+- conda: https://conda.anaconda.org/conda-forge/osx-arm64/imagecodecs-2026.6.26-py312he3e6aaf_0.conda
+  sha256: 668d83297d98d5ed2b921a35274d251546ba0bcd6112f9731b8a1daab4c48991
+  md5: 2ba6662c10339ba364f9a27d110d371d
   depends:
   - __osx >=11.0
   - blosc >=1.21.6,<2.0a0
   - brunsli >=0.1,<1.0a0
   - bzip2 >=1.0.8,<2.0a0
-  - c-blosc2 >=3.1.4,<3.2.0a0
+  - c-blosc2 >=3.1.5,<3.2.0a0
   - charls >=2.4.4,<2.5.0a0
   - giflib >=5.2.2,<5.3.0a0
   - jxrlib >=1.1,<1.2.0a0
@@ -21539,7 +21539,7 @@ packages:
   - libzlib >=1.3.2,<2.0a0
   - libzopfli >=1.0.3,<1.1.0a0
   - lz4-c >=1.10.0,<1.11.0a0
-  - numpy >=1.23,<3
+  - numpy >=1.25,<3
   - openjpeg >=2.5.4,<3.0a0
   - openjph >=0.30.1,<0.31.0a0
   - python >=3.12,<3.13.0a0
@@ -21554,17 +21554,17 @@ packages:
   purls:
   - pkg:pypi/imagecodecs?source=hash-mapping
   run_exports: {}
-  size: 1848265
-  timestamp: 1782112248954
-- conda: https://conda.anaconda.org/conda-forge/osx-arm64/imagecodecs-2026.6.6-py313h9d12897_3.conda
-  sha256: 3f31cceb7d0991244107d9fe633e22d4faa79fd1a9cab65d954fa6e60a7387d3
-  md5: 74c22fef6564ec7f252cfce6888504c0
+  size: 1874267
+  timestamp: 1782686484561
+- conda: https://conda.anaconda.org/conda-forge/osx-arm64/imagecodecs-2026.6.26-py313h9d12897_0.conda
+  sha256: 4530db6123683c60a1afe3160f0a28c6ff936538038fb754774d96d0bd89fe21
+  md5: 731cc12e154cabe0d95c6cdb517473f4
   depends:
   - __osx >=11.0
   - blosc >=1.21.6,<2.0a0
   - brunsli >=0.1,<1.0a0
   - bzip2 >=1.0.8,<2.0a0
-  - c-blosc2 >=3.1.4,<3.2.0a0
+  - c-blosc2 >=3.1.5,<3.2.0a0
   - charls >=2.4.4,<2.5.0a0
   - giflib >=5.2.2,<5.3.0a0
   - jxrlib >=1.1,<1.2.0a0
@@ -21586,7 +21586,7 @@ packages:
   - libzlib >=1.3.2,<2.0a0
   - libzopfli >=1.0.3,<1.1.0a0
   - lz4-c >=1.10.0,<1.11.0a0
-  - numpy >=1.23,<3
+  - numpy >=1.25,<3
   - openjpeg >=2.5.4,<3.0a0
   - openjph >=0.30.1,<0.31.0a0
   - python >=3.13,<3.14.0a0
@@ -21599,8 +21599,8 @@ packages:
   license: BSD-3-Clause
   license_family: BSD
   run_exports: {}
-  size: 1855640
-  timestamp: 1782112862862
+  size: 1874700
+  timestamp: 1782686723828
 - conda: https://conda.anaconda.org/conda-forge/osx-arm64/json-c-0.18-he4178ee_0.conda
   sha256: 73179a1cd0b45c09d4f631cb359d9e755e6e573c5d908df42006728e0bf8297c
   md5: 94f14ef6157687c30feb44e1abecd577
@@ -25786,13 +25786,13 @@ packages:
     - igraph >=1.0.1,<1.1.0a0
   size: 1818593
   timestamp: 1766862262166
-- conda: https://conda.anaconda.org/conda-forge/win-64/imagecodecs-2026.6.6-py312h006af62_3.conda
-  sha256: 495fccc91313968985d45be1a528a20818e6c5449cc4a05837cc066d6655b0f8
-  md5: e46c68718dfeedc8d93f4f9fa1a67892
+- conda: https://conda.anaconda.org/conda-forge/win-64/imagecodecs-2026.6.26-py312h006af62_0.conda
+  sha256: 3206d976cf2b7aedcb938a943ce47247f1b727bca17af5fd8239f028156e074b
+  md5: 91cbab7ae7599e9a1e2f4b1bb6e2142e
   depends:
   - blosc >=1.21.6,<2.0a0
   - bzip2 >=1.0.8,<2.0a0
-  - c-blosc2 >=3.1.4,<3.2.0a0
+  - c-blosc2 >=3.1.5,<3.2.0a0
   - charls >=2.4.4,<2.5.0a0
   - giflib >=5.2.2,<5.3.0a0
   - jxrlib >=1.1,<1.2.0a0
@@ -25813,7 +25813,7 @@ packages:
   - libzlib >=1.3.2,<2.0a0
   - libzopfli >=1.0.3,<1.1.0a0
   - lz4-c >=1.10.0,<1.11.0a0
-  - numpy >=1.23,<3
+  - numpy >=1.25,<3
   - openjpeg >=2.5.4,<3.0a0
   - openjph >=0.30.1,<0.31.0a0
   - python >=3.12,<3.13.0a0
@@ -25828,17 +25828,17 @@ packages:
   license: BSD-3-Clause
   license_family: BSD
   purls:
-  - pkg:pypi/imagecodecs?source=hash-mapping
+  - pkg:pypi/imagecodecs?source=compressed-mapping
   run_exports: {}
-  size: 1971700
-  timestamp: 1782111908144
-- conda: https://conda.anaconda.org/conda-forge/win-64/imagecodecs-2026.6.6-py313hf6ffc8e_3.conda
-  sha256: 80baec6017a6f3e31a78e58b43549dd409805bcf92dc5ee5ee7b634bd645d96e
-  md5: ae5527f722e23edbc8b0aaa9ab33d584
+  size: 1999552
+  timestamp: 1782686195927
+- conda: https://conda.anaconda.org/conda-forge/win-64/imagecodecs-2026.6.26-py313hf6ffc8e_0.conda
+  sha256: 58465381ecb7c2931616250cc25ecfc406685f12a017bcb0b426fc0dfed36b63
+  md5: a1cbfcf8c79767255b927987cacd9a97
   depends:
   - blosc >=1.21.6,<2.0a0
   - bzip2 >=1.0.8,<2.0a0
-  - c-blosc2 >=3.1.4,<3.2.0a0
+  - c-blosc2 >=3.1.5,<3.2.0a0
   - charls >=2.4.4,<2.5.0a0
   - giflib >=5.2.2,<5.3.0a0
   - jxrlib >=1.1,<1.2.0a0
@@ -25859,7 +25859,7 @@ packages:
   - libzlib >=1.3.2,<2.0a0
   - libzopfli >=1.0.3,<1.1.0a0
   - lz4-c >=1.10.0,<1.11.0a0
-  - numpy >=1.23,<3
+  - numpy >=1.25,<3
   - openjpeg >=2.5.4,<3.0a0
   - openjph >=0.30.1,<0.31.0a0
   - python >=3.13,<3.14.0a0
@@ -25874,8 +25874,8 @@ packages:
   license: BSD-3-Clause
   license_family: BSD
   run_exports: {}
-  size: 1969239
-  timestamp: 1782111906711
+  size: 1998375
+  timestamp: 1782686206970
 - conda: https://conda.anaconda.org/conda-forge/win-64/jxrlib-1.1-hcfcfb64_3.conda
   sha256: a9ac265bcf65fce57cfb6512a1b072d5489445d14aa1b60c9bdf73370cf261b2
   md5: a9dff8432c11dfa980346e934c29ca3f

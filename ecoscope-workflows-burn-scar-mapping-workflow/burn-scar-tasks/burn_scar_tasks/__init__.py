@@ -640,7 +640,9 @@ def format_area_ha(
     area_ha: Annotated[float, Field(description="Area in hectares to format for display.")],
 ) -> str:
     """Format an area value as a human-readable string (m², ha, or km²)."""
-    if area_ha >= 10_000:
+    if area_ha <= 0:
+        return "0 ha"
+    elif area_ha >= 10_000:
         return f"{area_ha / 10_000:.1f} km²"
     elif area_ha >= 1:
         return f"{int(round(area_ha)):,} ha"

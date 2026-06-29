@@ -418,6 +418,12 @@ def compute_burn_scar_s2(
 
     gdf = gpd.GeoDataFrame.from_features(features, crs="EPSG:4326")
 
+    # Clip to AOI — at coarse scales GEE includes any pixel whose centroid falls
+    # inside the AOI, so patch polygons can straddle the boundary. Clip client-side.
+    aoi_union_geom = aoi_4326.geometry.union_all()
+    gdf["geometry"] = gdf.geometry.intersection(aoi_union_geom)
+    gdf = gdf[gdf.geometry.notna() & ~gdf.geometry.is_empty].reset_index(drop=True)
+
     # Classify each patch by its mean dNBR
     classified = gdf["dNBR"].apply(_classify)
     gdf["severity_class"] = [c[0] for c in classified]

@@ -252,7 +252,9 @@ def main(params: dict[str, Any], validate_params_schema: bool = True):
             ],
             unpack_depth=1,
         )
-        .partial(geodataframe=aoi_features, **(params.get("aoi_layer") or {}))
+        .partial(
+            geodataframe=aoi_features, zoom=True, **(params.get("aoi_layer") or {})
+        )
         .call()
     )
 
@@ -269,7 +271,11 @@ def main(params: dict[str, Any], validate_params_schema: bool = True):
             ],
             unpack_depth=1,
         )
-        .partial(geodataframe=overlay_features, **(params.get("overlay_layer") or {}))
+        .partial(
+            geodataframe=overlay_features,
+            zoom=False,
+            **(params.get("overlay_layer") or {}),
+        )
         .call()
     )
 

@@ -86,12 +86,13 @@ workflow:
     partial:
       geodataframe: ${{ workflow.burn_scar_result.return }}
 
-  # --- AOI boundary outline (always shown) ------------------------------------
+  # --- AOI boundary outline (always shown, zoom target) -----------------------
   - name: AOI Boundary Layer
     id: aoi_layer
     task: create_styled_overlay_layer
     partial:
       geodataframe: ${{ workflow.aoi_features.return }}
+      zoom: true
 
   # --- Optional user overlay --------------------------------------------------
   - name: Overlay Layer
@@ -103,6 +104,7 @@ workflow:
         - any_is_empty_df
     partial:
       geodataframe: ${{ workflow.overlay_features.return }}
+      zoom: false
 
   # --- Combine layers: burn scar + AOI boundary + optional overlay ------------
   # skipif: any_is_empty_df ONLY (not any_dependency_skipped) — task handles

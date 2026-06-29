@@ -499,7 +499,7 @@ def create_burn_scar_layer(
         layer_style=style,
         legend=legend,
         tooltip_columns=["area_ha", "dNBR", "severity_class", "confidence"],
-        zoom=True,
+        zoom=False,
     )
 
 
@@ -536,6 +536,10 @@ def combine_burn_scar_layers(
 @register(tags=["fire", "overlay"])
 def create_styled_overlay_layer(
     geodataframe: _GDF,
+    zoom: Annotated[
+        bool,
+        Field(default=False, description="If True, the map will zoom to this layer's extent on load."),
+    ] = False,
 ) -> Any:
     """
     Overlay layer for ER spatial features (AOI boundary, roads, fencelines, etc.).
@@ -570,6 +574,7 @@ def create_styled_overlay_layer(
             ),
             legend=None,
             tooltip_columns=[],
+            zoom=zoom,
         ))
 
     polygon_gdf = gdf[geom_col.isin({"Polygon", "MultiPolygon"})].copy()
@@ -585,6 +590,7 @@ def create_styled_overlay_layer(
             ),
             legend=None,
             tooltip_columns=[],
+            zoom=zoom,
         ))
 
     point_gdf = gdf[geom_col.isin({"Point", "MultiPoint"})].copy()
@@ -598,6 +604,7 @@ def create_styled_overlay_layer(
             ),
             legend=None,
             tooltip_columns=[],
+            zoom=zoom,
         ))
 
     return layers

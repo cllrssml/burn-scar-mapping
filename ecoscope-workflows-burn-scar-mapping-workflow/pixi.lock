@@ -203,7 +203,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/rav1e-0.8.1-h1fbca29_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/re2-2025.11.05-h5301d42_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/readline-8.3-h853b02a_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/regex-2026.5.9-py312h4c3975b_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/regex-2026.6.28-py312h4c3975b_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/rpds-py-2026.5.1-py312h192e038_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/ruamel.yaml-0.18.17-py312h5253ce2_2.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/ruamel.yaml.clib-0.2.15-py312h5253ce2_1.conda
@@ -646,7 +646,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/rav1e-0.8.1-h9d4cc37_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/re2-2025.11.05-he0da282_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/readline-8.3-hb682ff5_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/regex-2026.5.9-py312hcd1a082_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/regex-2026.6.28-py312hcd1a082_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/rpds-py-2026.5.1-py312h00f41f5_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/ruamel.yaml-0.18.17-py312hd41f8a7_2.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/ruamel.yaml.clib-0.2.15-py312hd41f8a7_1.conda
@@ -1291,7 +1291,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-64/rav1e-0.8.1-h618d828_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/re2-2025.11.05-h77e0585_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/readline-8.3-h68b038d_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-64/regex-2026.5.9-py312h933eb07_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-64/regex-2026.6.28-py312h933eb07_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/rpds-py-2026.5.1-py312hb77ea7e_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/ruamel.yaml-0.18.17-py312hf7082af_2.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/ruamel.yaml.clib-0.2.15-py312hf7082af_1.conda
@@ -1723,7 +1723,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/rav1e-0.8.1-h8246384_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/re2-2025.11.05-ha480c28_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/readline-8.3-h46df422_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/regex-2026.5.9-py312h2bbb03f_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/regex-2026.6.28-py312h2bbb03f_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/rpds-py-2026.5.1-py312h8b1d842_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/ruamel.yaml-0.18.17-py312hb3ab3e3_2.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/ruamel.yaml.clib-0.2.15-py312hb3ab3e3_1.conda
@@ -2145,7 +2145,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/win-64/rasterio-1.4.4-py312h11f88aa_0.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/rav1e-0.8.1-h007690e_0.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/re2-2025.11.05-ha104f34_1.conda
-      - conda: https://conda.anaconda.org/conda-forge/win-64/regex-2026.5.9-py312he06e257_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/win-64/regex-2026.6.28-py312he06e257_0.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/rpds-py-2026.5.1-py312hd944d65_0.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/ruamel.yaml-0.18.17-py312he5662c2_2.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/ruamel.yaml.clib-0.2.15-py312he5662c2_1.conda
@@ -7603,9 +7603,9 @@ packages:
     - readline >=8.3,<9.0a0
   size: 345073
   timestamp: 1765813471974
-- conda: https://conda.anaconda.org/conda-forge/linux-64/regex-2026.5.9-py312h4c3975b_0.conda
-  sha256: 2d1d20f24cd3274c91ce62215fd86b28c24c33a9381699b00fd95cffe11c1dc4
-  md5: 0cee21f9702469ebdd93b4ddc4a2dc3f
+- conda: https://conda.anaconda.org/conda-forge/linux-64/regex-2026.6.28-py312h4c3975b_0.conda
+  sha256: 75d6b6a85799e9e27ee133aa76538ab989f74f89b483da1fe7f1100dfb843e64
+  md5: 6a5e4e0d9e5e03621aa2fdf44244db66
   depends:
   - __glibc >=2.17,<3.0.a0
   - libgcc >=14
@@ -7616,8 +7616,8 @@ packages:
   purls:
   - pkg:pypi/regex?source=hash-mapping
   run_exports: {}
-  size: 411061
-  timestamp: 1778374143589
+  size: 413783
+  timestamp: 1782695404925
 - conda: https://conda.anaconda.org/conda-forge/linux-64/rpds-py-2026.5.1-py312h192e038_0.conda
   sha256: bc4a5045fd79e68392fb0661c698303c16e88b83d50626c2bc49c403555e900d
   md5: a9e6fe6228340517c3b6a98bf5a76e2e
@@ -12018,9 +12018,9 @@ packages:
     - readline >=8.3,<9.0a0
   size: 357597
   timestamp: 1765815673644
-- conda: https://conda.anaconda.org/conda-forge/linux-aarch64/regex-2026.5.9-py312hcd1a082_0.conda
-  sha256: 829ea3e284c18d331eaf474f366f1f7c8181470bde215e7ecf7119108b331511
-  md5: 29d9375f7e73ce33eeb0609bbcadb267
+- conda: https://conda.anaconda.org/conda-forge/linux-aarch64/regex-2026.6.28-py312hcd1a082_0.conda
+  sha256: 15db24f801820298ecd5c5950c442b4d9abc257659798662613bf3a97810577f
+  md5: c5512c0bf722f663f1b9eb2af4f23611
   depends:
   - libgcc >=14
   - python >=3.12,<3.13.0a0
@@ -12031,8 +12031,8 @@ packages:
   purls:
   - pkg:pypi/regex?source=hash-mapping
   run_exports: {}
-  size: 405735
-  timestamp: 1778374200794
+  size: 408685
+  timestamp: 1782695459701
 - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/rpds-py-2026.5.1-py312h00f41f5_0.conda
   sha256: 719052488cf761b8e568d8b3adefb1bd7ef7e457c2be8ffa6b7ef0eec4c5f8eb
   md5: 000789132117b11964d92828e69bcafb
@@ -19813,9 +19813,9 @@ packages:
     - readline >=8.3,<9.0a0
   size: 317819
   timestamp: 1765813692798
-- conda: https://conda.anaconda.org/conda-forge/osx-64/regex-2026.5.9-py312h933eb07_0.conda
-  sha256: 0ca7dc702def6b38ba17d9092c746089b04262a5481523fa636a62caf6de357a
-  md5: 41e37a699f3ca95813394005d82784e8
+- conda: https://conda.anaconda.org/conda-forge/osx-64/regex-2026.6.28-py312h933eb07_0.conda
+  sha256: 77ae4f1ec4cfef64f1675aa58def0d19b2866a21a2faaeb36fc62a22ac4109c0
+  md5: 1d3097bd32e4e7d4761aa95b944ff4d2
   depends:
   - __osx >=11.0
   - python >=3.12,<3.13.0a0
@@ -19825,8 +19825,8 @@ packages:
   purls:
   - pkg:pypi/regex?source=hash-mapping
   run_exports: {}
-  size: 377764
-  timestamp: 1778374454469
+  size: 382882
+  timestamp: 1782695721812
 - conda: https://conda.anaconda.org/conda-forge/osx-64/rpds-py-2026.5.1-py312hb77ea7e_0.conda
   sha256: 7a5993490a0ef070205da04b21c57ecdc2e3b06cc6b1ae9deb247678439da2aa
   md5: 739f9a12783e1a32576509d0ea3cc0db
@@ -24080,9 +24080,9 @@ packages:
     - readline >=8.3,<9.0a0
   size: 313930
   timestamp: 1765813902568
-- conda: https://conda.anaconda.org/conda-forge/osx-arm64/regex-2026.5.9-py312h2bbb03f_0.conda
-  sha256: 70c8590c2fa6474dd1f440d4fe674faed5ff17f9079d69abef7aaceefa229bbe
-  md5: 5f8dbdc69edd17a2fd6cf0833e532357
+- conda: https://conda.anaconda.org/conda-forge/osx-arm64/regex-2026.6.28-py312h2bbb03f_0.conda
+  sha256: ae6972bec67426aac1ec9a38205531c13fa411e382b1cfc408a72b1cc45667c1
+  md5: 3cc4ef31154b864693ff8965fdfe76d3
   depends:
   - __osx >=11.0
   - python >=3.12,<3.13.0a0
@@ -24093,8 +24093,8 @@ packages:
   purls:
   - pkg:pypi/regex?source=hash-mapping
   run_exports: {}
-  size: 373798
-  timestamp: 1778374452771
+  size: 378225
+  timestamp: 1782695875670
 - conda: https://conda.anaconda.org/conda-forge/osx-arm64/rpds-py-2026.5.1-py312h8b1d842_0.conda
   sha256: 10b1a12941d3f905dbd139b809d94d569e9be48d146c31f5cad71bfe6ae25412
   md5: 196427409c7a36c934df2c261edb164f
@@ -28375,9 +28375,9 @@ packages:
     - re2
   size: 220305
   timestamp: 1768190225351
-- conda: https://conda.anaconda.org/conda-forge/win-64/regex-2026.5.9-py312he06e257_0.conda
-  sha256: b69235440ad6293d42dd065a1e69671ede27b4c557b223cb83a912a084d50546
-  md5: 117343781d063bc6ac0b4c33a40845a7
+- conda: https://conda.anaconda.org/conda-forge/win-64/regex-2026.6.28-py312he06e257_0.conda
+  sha256: a860ab432bb798bc56c1667ba2bef676397d83248d8b131d8e91b2a9488faad3
+  md5: e6f67bf66db3d3b842198c16c9d55691
   depends:
   - python >=3.12,<3.13.0a0
   - python_abi 3.12.* *_cp312
@@ -28389,8 +28389,8 @@ packages:
   purls:
   - pkg:pypi/regex?source=hash-mapping
   run_exports: {}
-  size: 372300
-  timestamp: 1778374231226
+  size: 374965
+  timestamp: 1782695485081
 - conda: https://conda.anaconda.org/conda-forge/win-64/rpds-py-2026.5.1-py312hd944d65_0.conda
   sha256: 3b927f1c875769dc647c61e0c9e21d1047441d64fc512b75aea916be746556da
   md5: da8231829c8f3ea456f761ab09eca78a

@@ -45,9 +45,16 @@ from burn_scar_tasks import count_pre_images as count_pre_images
 from burn_scar_tasks import create_burn_scar_layer as create_burn_scar_layer
 from burn_scar_tasks import create_styled_overlay_layer as create_styled_overlay_layer
 from burn_scar_tasks import format_area_ha as format_area_ha
+from burn_scar_tasks import format_dnbr_threshold as format_dnbr_threshold
 from burn_scar_tasks import format_image_count as format_image_count
 from burn_scar_tasks import format_patch_count as format_patch_count
+from burn_scar_tasks import format_percent_burned as format_percent_burned
+from burn_scar_tasks import get_aoi_area_ha as get_aoi_area_ha
 from burn_scar_tasks import get_detection_mode as get_detection_mode
+from burn_scar_tasks import get_dnbr_threshold as get_dnbr_threshold
+from burn_scar_tasks import get_fire_window as get_fire_window
+from burn_scar_tasks import get_percent_burned as get_percent_burned
+from ecoscope.platform.tasks.io import persist_df as persist_df
 from ecoscope.platform.tasks.io import persist_text as persist_text
 from ecoscope.platform.tasks.results import (
     create_map_widget_single_view as create_map_widget_single_view,
@@ -374,6 +381,28 @@ def main(params: dict[str, Any], validate_params_schema: bool = True):
         .call()
     )
 
+    burn_scar_file = (
+        task(persist_df)
+        .validate()
+        .set_task_instance_id("burn_scar_file")
+        .handle_errors()
+        .with_tracing()
+        .skipif(
+            conditions=[
+                any_is_empty_df,
+                any_dependency_skipped,
+            ],
+            unpack_depth=1,
+        )
+        .partial(
+            df=burn_scar_result,
+            root_path=os.environ["ECOSCOPE_WORKFLOWS_RESULTS"],
+            filetype="geojson",
+            **(params.get("burn_scar_file") or {}),
+        )
+        .call()
+    )
+
     burned_area_ha = (
         task(count_burned_area_ha)
         .validate()
@@ -480,6 +509,82 @@ def main(params: dict[str, Any], validate_params_schema: bool = True):
             title="High Sev",
             data=high_severity_fmt,
             **(params.get("widget_high_severity") or {}),
+        )
+        .call()
+    )
+
+    aoi_area_result = (
+        task(get_aoi_area_ha)
+        .validate()
+        .set_task_instance_id("aoi_area_result")
+        .handle_errors()
+        .with_tracing()
+        .skipif(
+            conditions=[
+                any_is_empty_df,
+                any_dependency_skipped,
+            ],
+            unpack_depth=1,
+        )
+        .partial(geodataframe=burn_scar_result, **(params.get("aoi_area_result") or {}))
+        .call()
+    )
+
+    percent_burned = (
+        task(get_percent_burned)
+        .validate()
+        .set_task_instance_id("percent_burned")
+        .handle_errors()
+        .with_tracing()
+        .skipif(
+            conditions=[
+                any_is_empty_df,
+                any_dependency_skipped,
+            ],
+            unpack_depth=1,
+        )
+        .partial(
+            burned_ha=burned_area_ha,
+            aoi_area_ha=aoi_area_result,
+            **(params.get("percent_burned") or {}),
+        )
+        .call()
+    )
+
+    percent_burned_fmt = (
+        task(format_percent_burned)
+        .validate()
+        .set_task_instance_id("percent_burned_fmt")
+        .handle_errors()
+        .with_tracing()
+        .skipif(
+            conditions=[
+                any_is_empty_df,
+                any_dependency_skipped,
+            ],
+            unpack_depth=1,
+        )
+        .partial(percent=percent_burned, **(params.get("percent_burned_fmt") or {}))
+        .call()
+    )
+
+    widget_percent_burned = (
+        task(create_text_widget_single_view)
+        .validate()
+        .set_task_instance_id("widget_percent_burned")
+        .handle_errors()
+        .with_tracing()
+        .skipif(
+            conditions=[
+                any_is_empty_df,
+                any_dependency_skipped,
+            ],
+            unpack_depth=1,
+        )
+        .partial(
+            title="% Burned",
+            data=percent_burned_fmt,
+            **(params.get("widget_percent_burned") or {}),
         )
         .call()
     )
@@ -683,6 +788,101 @@ def main(params: dict[str, Any], validate_params_schema: bool = True):
         .call()
     )
 
+    threshold_result = (
+        task(get_dnbr_threshold)
+        .validate()
+        .set_task_instance_id("threshold_result")
+        .handle_errors()
+        .with_tracing()
+        .skipif(
+            conditions=[
+                any_is_empty_df,
+                any_dependency_skipped,
+            ],
+            unpack_depth=1,
+        )
+        .partial(
+            geodataframe=burn_scar_result, **(params.get("threshold_result") or {})
+        )
+        .call()
+    )
+
+    threshold_fmt = (
+        task(format_dnbr_threshold)
+        .validate()
+        .set_task_instance_id("threshold_fmt")
+        .handle_errors()
+        .with_tracing()
+        .skipif(
+            conditions=[
+                any_is_empty_df,
+                any_dependency_skipped,
+            ],
+            unpack_depth=1,
+        )
+        .partial(threshold=threshold_result, **(params.get("threshold_fmt") or {}))
+        .call()
+    )
+
+    widget_threshold = (
+        task(create_text_widget_single_view)
+        .validate()
+        .set_task_instance_id("widget_threshold")
+        .handle_errors()
+        .with_tracing()
+        .skipif(
+            conditions=[
+                any_is_empty_df,
+                any_dependency_skipped,
+            ],
+            unpack_depth=1,
+        )
+        .partial(
+            title="dNBR Threshold",
+            data=threshold_fmt,
+            **(params.get("widget_threshold") or {}),
+        )
+        .call()
+    )
+
+    fire_window = (
+        task(get_fire_window)
+        .validate()
+        .set_task_instance_id("fire_window")
+        .handle_errors()
+        .with_tracing()
+        .skipif(
+            conditions=[
+                any_is_empty_df,
+                any_dependency_skipped,
+            ],
+            unpack_depth=1,
+        )
+        .partial(geodataframe=burn_scar_result, **(params.get("fire_window") or {}))
+        .call()
+    )
+
+    widget_fire_window = (
+        task(create_text_widget_single_view)
+        .validate()
+        .set_task_instance_id("widget_fire_window")
+        .handle_errors()
+        .with_tracing()
+        .skipif(
+            conditions=[
+                any_is_empty_df,
+                any_dependency_skipped,
+            ],
+            unpack_depth=1,
+        )
+        .partial(
+            title="Fire Window",
+            data=fire_window,
+            **(params.get("widget_fire_window") or {}),
+        )
+        .call()
+    )
+
     dashboard = (
         task(gather_dashboard)
         .validate()
@@ -701,10 +901,13 @@ def main(params: dict[str, Any], validate_params_schema: bool = True):
             widgets=[
                 widget_burned,
                 widget_high_severity,
+                widget_percent_burned,
                 widget_patches,
                 widget_mode,
                 widget_pre_scenes,
                 widget_post_scenes,
+                widget_threshold,
+                widget_fire_window,
                 map_widget,
             ],
             time_range=None,

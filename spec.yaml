@@ -160,6 +160,15 @@ workflow:
       title: Burn Scar Map
       data: ${{ workflow.burn_scar_map_url.return }}
 
+  # --- GeoJSON file output (appears in Desktop Files tab) --------------------
+  - name: Burn Scar GeoJSON
+    id: burn_scar_file
+    task: persist_df
+    partial:
+      df: ${{ workflow.burn_scar_result.return }}
+      root_path: ${{ env.ECOSCOPE_WORKFLOWS_RESULTS }}
+      filetype: geojson
+
   # --- Stat: burned area (Low severity or higher) -----------------------------
   - name: Burned Area
     id: burned_area_ha
@@ -199,6 +208,33 @@ workflow:
     partial:
       title: High Sev
       data: ${{ workflow.high_severity_fmt.return }}
+
+  # --- Stat: % of AOI burned --------------------------------------------------
+  - name: AOI Area
+    id: aoi_area_result
+    task: get_aoi_area_ha
+    partial:
+      geodataframe: ${{ workflow.burn_scar_result.return }}
+
+  - name: Percent Burned
+    id: percent_burned
+    task: get_percent_burned
+    partial:
+      burned_ha: ${{ workflow.burned_area_ha.return }}
+      aoi_area_ha: ${{ workflow.aoi_area_result.return }}
+
+  - name: Percent Burned Formatted
+    id: percent_burned_fmt
+    task: format_percent_burned
+    partial:
+      percent: ${{ workflow.percent_burned.return }}
+
+  - name: Widget - % Burned
+    id: widget_percent_burned
+    task: create_text_widget_single_view
+    partial:
+      title: "% Burned"
+      data: ${{ workflow.percent_burned_fmt.return }}
 
   # --- Stat: burn patch count -------------------------------------------------
   - name: Patch Count
@@ -273,9 +309,44 @@ workflow:
       title: Post Imgs
       data: ${{ workflow.post_scenes_fmt.return }}
 
+  # --- Stat: dNBR threshold used ----------------------------------------------
+  - name: dNBR Threshold
+    id: threshold_result
+    task: get_dnbr_threshold
+    partial:
+      geodataframe: ${{ workflow.burn_scar_result.return }}
+
+  - name: dNBR Threshold Formatted
+    id: threshold_fmt
+    task: format_dnbr_threshold
+    partial:
+      threshold: ${{ workflow.threshold_result.return }}
+
+  - name: Widget - Threshold
+    id: widget_threshold
+    task: create_text_widget_single_view
+    partial:
+      title: dNBR Threshold
+      data: ${{ workflow.threshold_fmt.return }}
+
+  # --- Stat: fire scan window (since Context section cannot be auto-populated) -
+  - name: Fire Window
+    id: fire_window
+    task: get_fire_window
+    partial:
+      geodataframe: ${{ workflow.burn_scar_result.return }}
+
+  - name: Widget - Fire Window
+    id: widget_fire_window
+    task: create_text_widget_single_view
+    partial:
+      title: Fire Window
+      data: ${{ workflow.fire_window.return }}
+
   # --- Dashboard --------------------------------------------------------------
-  # widget_id order: 0=Burned, 1=High Sev, 2=Patches, 3=Mode,
-  #                  4=Pre Imgs, 5=Post Imgs, 6=Map
+  # Row 1 (y=0): 0=Burned, 1=High Sev, 2=%Burned, 3=Patches, 4=Mode
+  # Row 2 (y=3): 5=Pre Imgs, 6=Post Imgs, 7=Threshold, 8=Fire Window
+  # Row 3 (y=6): 9=Map
   - name: Dashboard
     id: dashboard
     task: gather_dashboard
@@ -284,10 +355,13 @@ workflow:
       widgets:
         - ${{ workflow.widget_burned.return }}
         - ${{ workflow.widget_high_severity.return }}
+        - ${{ workflow.widget_percent_burned.return }}
         - ${{ workflow.widget_patches.return }}
         - ${{ workflow.widget_mode.return }}
         - ${{ workflow.widget_pre_scenes.return }}
         - ${{ workflow.widget_post_scenes.return }}
+        - ${{ workflow.widget_threshold.return }}
+        - ${{ workflow.widget_fire_window.return }}
         - ${{ workflow.map_widget.return }}
       time_range: ~
 

@@ -163,6 +163,7 @@ def compute_burn_scar_s2(
                 "The pre-fire composite uses imagery before this date."
             ),
             pattern=r"^\d{4}-\d{2}-\d{2}$",
+            json_schema_extra={"format": "date"},
         ),
     ],
     fire_end_date: Annotated[
@@ -175,6 +176,7 @@ def compute_burn_scar_s2(
                 "The post-fire composite uses imagery after this date."
             ),
             pattern=r"^\d{4}-\d{2}-\d{2}$",
+            json_schema_extra={"format": "date"},
         ),
     ],
     pre_fire_days: Annotated[
@@ -409,6 +411,7 @@ def compute_burn_scar_s2(
         "geometry", "dNBR", "DELTA_MIRBI", "severity_class", "severity_index",
         "fill_color", "fill_color_hex", "confidence", "detection_mode",
         "area_ha", "pre_image_count", "post_image_count",
+        "dnbr_threshold", "fire_start_date", "fire_end_date", "aoi_area_ha",
     ]
     if not features:
         return gpd.GeoDataFrame(columns=_empty_cols, crs="EPSG:4326")
@@ -433,6 +436,12 @@ def compute_burn_scar_s2(
     gdf["detection_mode"]    = "aoi_scan"
     gdf["pre_image_count"]   = pre_count
     gdf["post_image_count"]  = post_count
+
+    # Run parameters — stored per-row so downstream stat tasks can read them
+    gdf["dnbr_threshold"]  = dnbr_threshold
+    gdf["fire_start_date"] = fire_start_date
+    gdf["fire_end_date"]   = fire_end_date
+    gdf["aoi_area_ha"]     = area_m2 / 10_000.0
 
     return gdf
 
@@ -642,8 +651,6 @@ def format_area_ha(
     """Format an area value as a human-readable string (m², ha, or km²)."""
     if area_ha <= 0:
         return "0 ha"
-    elif area_ha >= 10_000:
-        return f"{area_ha / 10_000:.1f} km²"
     elif area_ha >= 1:
         return f"{int(round(area_ha)):,} ha"
     else:
@@ -672,3 +679,64 @@ def format_image_count(
 ) -> str:
     """Format a scene count as 'N scene(s)' for dashboard display."""
     return f"{count} scene{'s' if count != 1 else ''}"
+
+
+@register(tags=["fire", "stats"])
+def get_dnbr_threshold(geodataframe: _GDF) -> float:
+    """Extract the dNBR detection threshold used in the burn scar computation."""
+    if geodataframe.empty or "dnbr_threshold" not in geodataframe.columns:
+        return 0.0
+    return float(geodataframe["dnbr_threshold"].iloc[0])
+
+
+@register(tags=["fire", "stats"])
+def format_dnbr_threshold(
+    threshold: Annotated[float, Field(description="dNBR threshold value.")],
+) -> str:
+    """Format dNBR threshold for display (e.g. 0.20)."""
+    return f"{threshold:.2f}"
+
+
+@register(tags=["fire", "stats"])
+def get_aoi_area_ha(geodataframe: _GDF) -> float:
+    """Extract the AOI area (ha) stored in the burn scar result GeoDataFrame."""
+    if geodataframe.empty or "aoi_area_ha" not in geodataframe.columns:
+        return 0.0
+    return float(geodataframe["aoi_area_ha"].iloc[0])
+
+
+@register(tags=["fire", "stats"])
+def get_percent_burned(
+    burned_ha: Annotated[float, Field(description="Burned area in hectares.")],
+    aoi_area_ha: Annotated[float, Field(description="Total AOI area in hectares.")],
+) -> float:
+    """Percentage of the AOI that burned (burned_ha / aoi_area_ha × 100)."""
+    if aoi_area_ha <= 0:
+        return 0.0
+    return (burned_ha / aoi_area_ha) * 100.0
+
+
+@register(tags=["fire", "stats"])
+def format_percent_burned(
+    percent: Annotated[float, Field(description="Percentage of AOI burned.")],
+) -> str:
+    """Format percent-burned for dashboard display (e.g. '12.4 %')."""
+    return f"{percent:.1f} %"
+
+
+@register(tags=["fire", "stats"])
+def get_fire_window(geodataframe: _GDF) -> str:
+    """Format the fire scan window (start – end) for the dashboard stat card."""
+    if geodataframe.empty:
+        return "N/A"
+    if "fire_start_date" not in geodataframe.columns or "fire_end_date" not in geodataframe.columns:
+        return "N/A"
+    start = str(geodataframe["fire_start_date"].iloc[0])
+    end   = str(geodataframe["fire_end_date"].iloc[0])
+    try:
+        from datetime import datetime as _dt
+        s = _dt.strptime(start, "%Y-%m-%d")
+        e = _dt.strptime(end,   "%Y-%m-%d")
+        return f"{s.day} {s.strftime('%b')} {s.year} – {e.day} {e.strftime('%b')} {e.year}"
+    except ValueError:
+        return f"{start} – {end}"
